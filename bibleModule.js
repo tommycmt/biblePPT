@@ -8,13 +8,13 @@ app.controller('selectControl', function($scope, $http) {
   
   $scope.submit = function() {
     $http.get($scope.selectedBook + ".json").then(function(response) {
-      book = response.data;
+      $scope.book = response.data;
     });
 
-    chapter = book[$scope.selectedChapter];
+    $scope.chapter = $scope.book[$scope.selectedChapter];
     
     for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
-      console.log(chapter[verse]);
+      console.log($scope.chapter[verse]);
     }
 
   }
