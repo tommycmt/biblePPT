@@ -4,11 +4,16 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
   <script src="js/dom-to-image.min.js"></script>
   <style>
+    #searchForm {
+      float: left;
+    }
+    
     .templateContainer {
       background: url('slide-72.jpg');
       width: 1600px;
       height: 900px;
       display: none;
+      float: right;
     }
 
     .contentContainer {
@@ -17,11 +22,12 @@
     }
 
     .list {
+      list-style: none;
       list-style-position: inside;
       padding-left: 0px;
     }
     
-    .list-items {
+    .index {
       font-size: 40px;
       font-weight: bold;
     }      
@@ -34,6 +40,11 @@
     .btn {
       margin-top: 3px;
       margin-right: 3px;
+    }
+    
+    p {
+      margin: 0px;
+      padding: 0px;
     }
     
   </style>
@@ -76,12 +87,14 @@
   
       <div class="templateContainer" width="1600px" height="900">
         <div class="contentContainer">
-          <span class="header">{{finalBookName + finalChapter + ":" + finalFromVerse + "-" + finalToVerse}}</span>
-          <ol class="list" start="{{finalFromVerse}}">
-            <li class="list-items" ng-repeat="verse in selectedVerse">
-              <span class="content">{{verse}}</span>
-            </li>
-          </ol>
+          <p class="header">{{finalBookName + finalChapter + ":" + finalFromVerse + "-" + finalToVerse}}</p>
+          <br />
+          <div class="list">
+            <p class="list-items" ng-repeat="verse in selectedVerse">
+              <span class="index">{{verse.index}} </span>
+              <span class="content">{{verse.content}}</span>
+            </p>
+          </div>
         </div>
       </div>
     </div>

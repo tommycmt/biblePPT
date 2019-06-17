@@ -13,7 +13,7 @@ app.controller('selectControl', function($scope, $http) {
       
       $scope.selectedVerse = [];
       for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
-        $scope.selectedVerse.push($scope.chapter[verse-1]);
+        $scope.selectedVerse.push({"index": verse, "content": $scope.chapter[verse-1]});
       }
       
       $scope.finalBookName = $scope.books[$scope.selectedBook].name;
