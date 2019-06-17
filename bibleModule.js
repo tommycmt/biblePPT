@@ -11,8 +11,10 @@ app.controller('selectControl', function($scope, $http) {
       $scope.book = response.data;
       $scope.chapter = $scope.book[$scope.selectedChapter];
       
+      $scope.bookName = $scope.books[$scope.selectedBook].name;
+      $scope.selectVerse = [];
       for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
-        console.log($scope.chapter[verse-1]);
+        $scope.selectVerse.push($scope.chapter[verse-1]);
       }
     });
 

@@ -2,6 +2,34 @@
 <html>
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <style>
+    .templateContainer {
+      background: url('slide-72.jpg');
+      width: 1600px;
+      height: 900px;
+    }
+
+    .contentContainer {
+      padding-top: 5px;
+      padding-left: 5px;
+    }
+
+    .list {
+      list-style-position: inside;
+      padding-left: 0px;
+    }
+    
+    .list-items {
+      font-size: 40px;
+      font-weight: bold;
+    }      
+    
+    .header, .content {
+      font-size: 50px;
+      font-weight: bold;
+    }
+    
+  </style>
 </head>
 <body>
   <div id="container" ng-app="bible">
@@ -27,6 +55,17 @@
         </div>
         <input type="submit" value="Search">
       </form>
+    </div>
+  
+    <div class="templateContainer" width="1600px" height="900">
+      <div class="contentContainer">
+        <span class="header">{{bookName + selectedChapter+":"+selectedFromVerse + "-" + selectedToVerse}}</span>
+        <ol class="list" start="{{selectedFromVerse}}">
+          <li class="list-items">
+            <span class="content" ng-repeat="verse in selectVerse" >{{verse}}</span>
+          </li>
+        </ol>
+      </div>
     </div>
   </div>
   <script src="bibleModule.js"></script>
