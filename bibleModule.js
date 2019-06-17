@@ -7,15 +7,16 @@ app.controller('selectControl', function($scope, $http) {
   });
   
   $scope.submit = function() {
-    $http.get($scope.selectedBook + ".json").then(function(response) {
+    $http.get("bible/" +$scope.selectedBook + ".json").then(function(response) {
       $scope.book = response.data;
+      $scope.chapter = $scope.book[$scope.selectedChapter];
+      
+      for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
+        console.log($scope.chapter[verse]);
+      }
     });
 
-    $scope.chapter = $scope.book[$scope.selectedChapter];
-    
-    for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
-      console.log($scope.chapter[verse]);
-    }
+
 
   }
   
