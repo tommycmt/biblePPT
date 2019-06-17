@@ -2,16 +2,21 @@ var app = angular.module('bible', []);
 
 app.controller('selectControl', function($scope, $http) {
 
-  $http.get("books.json")
-  .then(function(response) {
+  $http.get("books.json").then(function(response) {
     $scope.books = response.data;
   });
   
   $scope.submit = function() {
-    console.log($scope.selectedBook);
-    console.log($scope.selectedChapter);
-    console.log($scope.selectedFromVerse);
-    console.log($scope.selectedToVerse);
+    $http.get($scope.selectedBook + ".json").then(function(response) {
+      book = response.data;
+    });
+
+    chapter = book[$scope.selectedChapter];
+    
+    for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
+      console.log(chapter[verse]);
+    }
+
   }
   
 });
