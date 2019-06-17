@@ -12,7 +12,7 @@ app.controller('selectControl', function($scope, $http) {
       $scope.chapter = $scope.book[$scope.selectedChapter];
       
       for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
-        console.log($scope.chapter[verse]);
+        console.log($scope.chapter[verse-1]);
       }
     });
 
