@@ -11,11 +11,16 @@ app.controller('selectControl', function($scope, $http) {
       $scope.book = response.data;
       $scope.chapter = $scope.book[$scope.selectedChapter];
       
-      $scope.bookName = $scope.books[$scope.selectedBook].name;
-      $scope.selectVerse = [];
+      $scope.selectedVerse = [];
       for (var verse = parseInt($scope.selectedFromVerse); verse <= parseInt($scope.selectedToVerse); verse ++) {
-        $scope.selectVerse.push($scope.chapter[verse-1]);
+        $scope.selectedVerse.push($scope.chapter[verse-1]);
       }
+      
+      $scope.finalBookName = $scope.books[$scope.selectedBook].name;
+      $scope.finalChapter = $scope.selectedChapter;
+      $scope.finalFromVerse = $scope.selectedFromVerse;
+      $scope.finalToVerse = $scope.selectedToVerse;
+      document.getElementsByClassName("templateContainer")[0].style.display = "block";
     });
 
 

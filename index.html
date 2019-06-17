@@ -7,6 +7,7 @@
       background: url('slide-72.jpg');
       width: 1600px;
       height: 900px;
+      display: none;
     }
 
     .contentContainer {
@@ -55,16 +56,17 @@
         </div>
         <input type="submit" value="Search">
       </form>
-    </div>
+    
   
-    <div class="templateContainer" width="1600px" height="900">
-      <div class="contentContainer">
-        <span class="header">{{bookName + selectedChapter+":"+selectedFromVerse + "-" + selectedToVerse}}</span>
-        <ol class="list" start="{{selectedFromVerse}}">
-          <li class="list-items">
-            <span class="content" ng-repeat="verse in selectVerse" >{{verse}}</span>
-          </li>
-        </ol>
+      <div class="templateContainer" width="1600px" height="900">
+        <div class="contentContainer">
+          <span class="header">{{finalBookName + finalChapter + ":" + finalFromVerse + "-" + finalToVerse}}</span>
+          <ol class="list" start="{{selectedFromVerse}}">
+            <li class="list-items" ng-repeat="verse in selectedVerse">
+              <span class="content">{{verse}}</span>
+            </li>
+          </ol>
+        </div>
       </div>
     </div>
   </div>
