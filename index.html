@@ -2,6 +2,7 @@
 <html>
 <head>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+  <script src="js/dom-to-image.min.js"></script>
   <style>
     .templateContainer {
       background: url('slide-72.jpg');
@@ -30,7 +31,22 @@
       font-weight: bold;
     }
     
+    .btn {
+      margin-top: 3px;
+      margin-right: 3px;
+    }
+    
   </style>
+  
+  <script>
+    function saveAs() {
+      var targetNode = document.getElementsByClassName('templateContainer')[0];
+      domtoimage.toBlob(targetNode).then(function (blob) {
+        var url = URL.createObjectURL(blob);
+        window.open(url);
+      });
+    }
+  </script>
 </head>
 <body>
   <div id="container" ng-app="bible">
@@ -54,14 +70,14 @@
           <select id="toVerseSelect" ng-model="selectedToVerse" ng-options="n for n in [] | range:selectedFromVerse:books[selectedBook].chapters[selectedChapter]+1">
           </select>
         </div>
-        <input type="submit" value="Search">
+        <input class="btn" type="submit" value="Search"><input class="btn"type="button" value="export" onclick="saveAs();">
       </form>
     
   
       <div class="templateContainer" width="1600px" height="900">
         <div class="contentContainer">
           <span class="header">{{finalBookName + finalChapter + ":" + finalFromVerse + "-" + finalToVerse}}</span>
-          <ol class="list" start="{{selectedFromVerse}}">
+          <ol class="list" start="{{finalFromVerse}}">
             <li class="list-items" ng-repeat="verse in selectedVerse">
               <span class="content">{{verse}}</span>
             </li>
@@ -71,4 +87,5 @@
     </div>
   </div>
   <script src="bibleModule.js"></script>
+
 </body>
