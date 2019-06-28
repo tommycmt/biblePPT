@@ -64,30 +64,31 @@
     <div id="selectContainer" ng-controller="selectControl">
       <form id="searchForm" ng-submit="submit()">
         <div id="bookContainer">
-          <label>Book:</label>
+          <label>書卷:</label>
           <select id="bookSelect" ng-model="selectedBook" ng-options="key as book.name for (key, book) in books">
           </select>
         </div>
         <div id="chapterContainer">
-          <label>Chapter:</label>
+          <label>章:</label>
           <select id="chapterSelect" ng-model="selectedChapter" ng-options="key as key for (key, value) in books[selectedBook].chapters">
           </select>
         </div>
         <div id="verseContainer">
-          <label>From Verse:</label>
+          <label>由:</label>
           <select id="fromVerseSelect" ng-model="selectedFromVerse" ng-options="n for n in [] | range:1:books[selectedBook].chapters[selectedChapter]+1">
           </select>
-          <label>To Verse:</label>
+          <label>節 至:</label>
           <select id="toVerseSelect" ng-model="selectedToVerse" ng-options="n for n in [] | range:selectedFromVerse:books[selectedBook].chapters[selectedChapter]+1">
           </select>
+          <label>節</label>
         </div>
-        <input class="btn" type="submit" value="Search"><input class="btn"type="button" value="export" onclick="saveAs();">
+        <input class="btn" type="submit" value="搜索"><input class="btn"type="button" value="輸出作圖片" onclick="saveAs();">
       </form>
     
   
       <div class="templateContainer" width="1600px" height="900">
         <div class="contentContainer" contenteditable>
-          <p class="header">{{finalBookName + finalChapter + ":" + finalFromVerse + "-" + finalToVerse}}</p>
+          <p class="header">{{finalBookName || "" + finalChapter || "" + ":" + finalFromVerse || "" + "-" + finalToVerse || ""}}</p>
           <br />
           <div class="list">
             <p class="list-items" ng-repeat="verse in selectedVerse">
